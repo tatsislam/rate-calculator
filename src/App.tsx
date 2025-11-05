@@ -10,24 +10,25 @@ function App() {
   const [rate, setRate] = useState<number>(0);
 
   const addCount = () => {
-    setCounts([...counts, Date.now()]);
-
-    const intervals = counts.map((value, index) => {
+    const newCounts =  [...counts, Date.now()];
+    
+    const intervals = newCounts.map((value, index) => {
       if (index === 0) return;
-      return value - counts[index - 1];
+      return value - newCounts[index - 1];
     });
-
+    
     const validIntervals = intervals.filter(
       (interval): interval is number => interval !== undefined
     );
-
+    
     if (validIntervals.length > 0) {
       const averageInterval =
-        validIntervals.reduce((a, b) => a + b, 0) / validIntervals.length;
+      validIntervals.reduce((a, b) => a + b, 0) / validIntervals.length;
       const calculatedRate = 60000 / averageInterval; // Convert to counts per minute
       setRate(calculatedRate);
     }
-    console.log({ counts, intervals, validIntervals, rate });
+    console.log({ newCounts, intervals, validIntervals, rate });
+    setCounts(newCounts);
   };
 
   const resetCounts = (event: React.MouseEvent) => {

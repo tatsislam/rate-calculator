@@ -56,7 +56,7 @@ function App() {
         ) : (
           <Stack>
             <Text>{counts.length} total counts</Text>
-            <Text>{Math.round(rate)} counts per minute</Text>
+            <Text>{Math.round(rate * 10) / 10} counts per minute</Text>
             <Text>{Math.round(rate * 60)} counts per hour</Text>
           </Stack>
         )}

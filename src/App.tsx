@@ -18,7 +18,6 @@ const centeredContentStyle = xcss({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
-  alignItems: "center",
 });
 
 function App() {

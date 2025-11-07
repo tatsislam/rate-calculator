@@ -5,20 +5,50 @@ import { Box, Pressable, Stack, Text, xcss } from "@atlaskit/primitives";
 import RetryIcon from "@atlaskit/icon/core/retry";
 import Heading from "@atlaskit/heading";
 
-const clickContainerStyle = xcss({
-  height: "100vh",
-  width: "100vw",
+const pageContainerStyle = xcss({
   display: "flex",
   flexDirection: "column",
-  cursor: "pointer",
+  height: "100vh",
+  width: "100vw",
+  position: "relative",
 });
 
-const centeredContentStyle = xcss({
+const clickContainerStyle = xcss({
+  position: "absolute",
+  top: "space.0",
+  left: "space.0",
+  height: "100%",
+  width: "100%",
+  zIndex: "1",
+});
+
+const contentContainerStyle = xcss({
+  display: "flex",
   flex: 1,
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+});
+
+const dataContainerStyle = xcss({
+  zIndex: "card",
+  padding: "space.200",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
+  alignItems: "center",
+  pointerEvents: "none",
+  gap: "space.200",
 });
+
+const buttonContainerStyle = xcss({
+  pointerEvents: "auto",
+});
+
+const stackStyle = xcss({
+  gap: "space.025",
+  alignItems: "center",
+})
 
 function App() {
   const [counts, setCounts] = useState<Array<number>>([]);
@@ -53,30 +83,29 @@ function App() {
   };
 
   return (
-    <Pressable
-      onClick={addCount}
-      xcss={clickContainerStyle}
-    >
-      <Box testId="content-container" xcss={centeredContentStyle}>
-        <Box testId="data-container" padding="space.100">
+    <Box xcss={pageContainerStyle}>
+      <Pressable onClick={addCount} xcss={clickContainerStyle} />
+
+      <Box testId="content-container" xcss={contentContainerStyle}>
+        <Box testId="data-container" xcss={dataContainerStyle}>
           {counts.length === 0 ? (
             <Heading size={"small"}>Click anywhere to start counting!</Heading>
           ) : (
-            <Stack>
+            <Stack xcss={stackStyle}>
               <Text>{counts.length} total counts</Text>
               <Text>{Math.round(rate * 10) / 10} counts per minute</Text>
               <Text>{Math.round(rate * 60)} counts per hour</Text>
             </Stack>
           )}
-        </Box>
-        <Box padding="space.100">
-          <Button
-            appearance="primary"
-            onClick={resetCounts}
-            iconBefore={RetryIcon}
-          >
-            Reset
-          </Button>
+          <Box xcss={buttonContainerStyle}>
+            <Button
+              appearance="primary"
+              onClick={resetCounts}
+              iconBefore={RetryIcon}
+            >
+              Reset
+            </Button>
+          </Box>
         </Box>
       </Box>
       <Box padding="space.150">
@@ -84,7 +113,7 @@ function App() {
           Made by Tanvee
         </Text>
       </Box>
-    </Pressable>
+    </Box>
   );
 }
 

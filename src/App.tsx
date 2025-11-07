@@ -48,7 +48,14 @@ const buttonContainerStyle = xcss({
 const stackStyle = xcss({
   gap: "space.025",
   alignItems: "center",
-})
+});
+
+const footerStyle = xcss({
+  position: "absolute",
+  bottom: "space.100",
+  alignSelf: "center",
+  zIndex: "card",
+});
 
 function App() {
   const [counts, setCounts] = useState<Array<number>>([]);
@@ -108,7 +115,7 @@ function App() {
           </Box>
         </Box>
       </Box>
-      <Box padding="space.150">
+      <Box xcss={footerStyle}>
         <Text as="p" color="color.text.subtle">
           Made by Tanvee
         </Text>

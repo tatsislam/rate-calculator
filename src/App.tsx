@@ -99,6 +99,7 @@ function App() {
             <Heading size={"small"}>Click anywhere to start counting!</Heading>
           ) : (
             <Stack xcss={stackStyle}>
+              <Text>{Math.floor((Date.now() - counts[0]) / 1000)} seconds</Text>
               <Text>{counts.length} total counts</Text>
               <Text>{Math.round(rate * 10) / 10} counts per minute</Text>
               <Text>{Math.round(rate * 60)} counts per hour</Text>

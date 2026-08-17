@@ -89,8 +89,6 @@ function App() {
     setRate(0);
   };
 
-  const time_in_sec = (Date.now() - counts[0]) / 1000;
-
   return (
     <Box xcss={pageContainerStyle}>
       <Pressable onClick={addCount} xcss={clickContainerStyle} />

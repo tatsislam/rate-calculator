@@ -99,7 +99,7 @@ function App() {
             <Heading size={"small"}>Click anywhere to start counting!</Heading>
           ) : (
             <Stack xcss={stackStyle}>
-              <Text>
+              <Text>Elapsed Time: 
                 {(() => {
                   const elapsed = (Date.now() - counts[0]) / 1000;
               
@@ -113,9 +113,9 @@ function App() {
                   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
                 })()}
               </Text>
-              <Text>{counts.length} total counts</Text>
-              <Text>{Math.round(rate * 10) / 10} counts per minute</Text>
-              <Text>{Math.round(rate * 60)} counts per hour</Text>
+              <Text>Total events: {counts.length}</Text>
+              <Text>Rate per minute: {Math.round(rate * 10) / 10}</Text>
+              <Text>Rate per hour: {Math.round(rate * 60)}</Text>
             </Stack>
           )}
           <Box xcss={buttonContainerStyle}>

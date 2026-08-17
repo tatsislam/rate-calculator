@@ -89,6 +89,8 @@ function App() {
     setRate(0);
   };
 
+  const time_in_sec = (Date.now() - counts[0]) / 1000;
+
   return (
     <Box xcss={pageContainerStyle}>
       <Pressable onClick={addCount} xcss={clickContainerStyle} />
@@ -99,7 +101,20 @@ function App() {
             <Heading size={"small"}>Click anywhere to start counting!</Heading>
           ) : (
             <Stack xcss={stackStyle}>
-              <Text>{Math.floor((Date.now() - counts[0]) / 1000)} seconds</Text>
+              <Text>
+                {(() => {
+                  const elapsed = (Date.now() - counts[0]) / 1000;
+              
+                  if (elapsed < 60) {
+                    return `${elapsed.toFixed(2)} seconds`;
+                  }
+              
+                  const minutes = Math.floor(elapsed / 60);
+                  const seconds = Math.floor(elapsed % 60);
+              
+                  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+                })()}
+              </Text>
               <Text>{counts.length} total counts</Text>
               <Text>{Math.round(rate * 10) / 10} counts per minute</Text>
               <Text>{Math.round(rate * 60)} counts per hour</Text>

@@ -104,13 +104,13 @@ function App() {
                   const elapsed = (Date.now() - counts[0]) / 1000;
               
                   if (elapsed < 60) {
-                    return `${elapsed.toFixed(2)} seconds`;
+                    return ` ${elapsed.toFixed(2)} seconds`;
                   }
               
                   const minutes = Math.floor(elapsed / 60);
                   const seconds = Math.floor(elapsed % 60);
               
-                  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+                  return ` ${minutes}:${seconds.toString().padStart(2, "0")}`;
                 })()}
               </Text>
               <Text>Total events: {counts.length}</Text>
